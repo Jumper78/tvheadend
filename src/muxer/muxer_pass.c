@@ -672,27 +672,22 @@ pass_muxer_write_ts(muxer_t *m, pktbuf_t *pb)
         } else if (pid == DVB_SDT_PID) {
           
           dvb_table_parse(&pm->pm_sdt, "-", tsb, l, 1, 0, pass_muxer_sdt_cb);
-//          if (pid == pm->pm_pmt_pid)
-//            goto __pmt;
 
         /* NIT */
         } else if (pid == DVB_NIT_PID) {
         
           dvb_table_parse(&pm->pm_nit, "-", tsb, l, 1, 0, pass_muxer_nit_cb);
-//          if (pid == pm->pm_pmt_pid)
-//            goto __pmt;
 
         /* EIT */
         } else if (pid == DVB_EIT_PID) {
         
           dvb_table_parse(&pm->pm_eit, "-", tsb, l, 1, 0, pass_muxer_eit_cb);
-//          if (pid == pm->pm_pmt_pid)
-//            goto __pmt;
 
+        }
+        
         /* PMT */
-        } else if {
+        if (pid == pm->pm_pmt_pid) {
 
-//__pmt:
           dvb_table_parse(&pm->pm_pmt, "-", tsb, l, 1, 0, pass_muxer_pmt_cb);
 
         }
